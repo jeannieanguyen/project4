@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.ucla.cs.cs144.AuctionSearchClient;
+
 
 public class SearchServlet extends HttpServlet implements Servlet {
        
@@ -19,5 +21,7 @@ public class SearchServlet extends HttpServlet implements Servlet {
           String query = request.getParameter("q");
           request.setAttribute("q", query); 
           request.getRequestDispatcher("/keywordSearch.jsp").forward(request,response); 
+
+          SearchResult[] basicResults = AuctionSearchClient.basicSearch(query, 0, 20);
     }
 }
